@@ -1,11 +1,13 @@
 ﻿using FriendOrganizer.Model;
 using FriendOrganizer.UI.Events;
+using Prism.Commands;
 using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace FriendOrganizer.UI.ViewModels
 {
@@ -25,6 +27,8 @@ namespace FriendOrganizer.UI.ViewModels
         {
             _eventAggregator = eventAggregator;
 
+            SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
+
             _eventAggregator.GetEvent<OpenFriendDetailsViewEvent>().Subscribe(OnOpenFriendDetailsView);
         }
 
@@ -33,6 +37,8 @@ namespace FriendOrganizer.UI.ViewModels
 
 
         #region Properties
+
+        public ICommand SaveCommand { get; }
 
         public Friend Friend
         {
@@ -53,6 +59,16 @@ namespace FriendOrganizer.UI.ViewModels
         private void OnOpenFriendDetailsView(Friend args)
         {
             Friend = args;
+        }
+
+        private async void OnSaveExecute()
+        {
+            
+        }
+
+        private bool OnSaveCanExecute()
+        {
+            return true;
         }
 
         #endregion

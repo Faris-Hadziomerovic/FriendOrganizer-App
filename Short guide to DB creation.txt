@@ -1,0 +1,46 @@
+- Add nuget package for EntityFramework to [FriendOrganizer.DataAccess] project.
+
+- Add [name-of-DBContext] class
+
+- Inherits "DbContext"
+
+- Add the following to the constructor:
+    :base("[name-of-connectionString]")
+
+- Add DbSets
+
+- If needed, override OnModelCreating() method
+
+- Connection string guide:
+    -to App.config add the following after </configSections>:
+        <connectionStrings>
+            <add name="[name-of-connectionString]"
+                 connectionString="Data Source=.;Initial Catalog=[Name-of-DataBase (etc. FriendOrganizerDB)];Integrated Security=true"  
+                 providerName="System.Data.SqlClient"/>
+        </connectionStrings>
+
+    - Integrated Security is for windows login info instead of username and password
+    - Unsure if whitespaces are allowed after ";" in the connectionStringDB
+    - [Name-of-DataBase] should appear in dropdown menu in the server explorer -> ... -> add connection
+
+
+- Tools -> NuGet Package Menager -> Package Menager Console 
+
+- Default project: FriendOrganizer.DataAccess
+
+- Package Menager Commands:
+    "Enable-Migrations" (only once)
+    "Add-Migration [name-of-Migration]" (every time there is a change to the model, name example: InitialDatabase)
+    "Add-Migration [name-of-Migration] -Force" (if you want to apply changes to an existing migration)
+    "Update-Database" to apply migration to database and create it
+
+- After first command Configuration.cs will appear
+    - Modify Seed() method if needed (add context.[name-of-DbSet].AddOrUpdate())
+
+- Input second command
+    - Migration is created
+
+- Input Update-Database command
+    - either add the connection string to the main project or use an extension to specify [FriendOrganizer.DataAccess] project
+
+- View -> Server Explorer -> Data Connections (right click) -> Add Connection -> Server Name: "." -> Select or enter database name dropdown -> choose Db name (FriendOrganizerDB)

@@ -1,5 +1,7 @@
-﻿using FriendOrganizer.Model;
+﻿using FriendOrganizer.DataAccess;
+using FriendOrganizer.Model;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FriendOrganizer.UI.Data
@@ -8,12 +10,10 @@ namespace FriendOrganizer.UI.Data
     {
         public IEnumerable<Friend> GetFriends()
         {
-            List<Friend> friends = new List<Friend>();
-            friends.Add(new Friend { Id = 1, FirstName = "Faris", LastName = "Hadziomerovic" });
-            friends.Add(new Friend { Id = 2, FirstName = "John", LastName = "Doe" });
-            friends.Add(new Friend { Id = 3, FirstName = "Jane", LastName = "Winters" });
-
-            return friends;
+            using (var ctx = new FriendOrganizerDbContext())
+            {
+                return ctx.Friends.AsNoTracking().ToList();
+            }            
         }        
     }
 }
