@@ -3,5 +3,5 @@ using Prism.Events;
 
 namespace FriendOrganizer.UI.Events
 {
-    public class OpenFriendDetailsViewEvent : PubSubEvent<Friend> { }
+    public class OpenFriendDetailsViewEvent : PubSubEvent<int> { }
 }

@@ -1,12 +1,12 @@
 ﻿using Autofac;
 using Prism.Events;
-using FriendOrganizer.UI.ViewModels;
 using FriendOrganizer.UI.Data;
+using FriendOrganizer.DataAccess;
+using FriendOrganizer.UI.ViewModels;
+using FriendOrganizer.UI.Data.Lookups;
 using FriendOrganizer.UI.Views.Services;
-//using FriendOrganizer.DataAccess;
-//using FriendOrganizer.UI.Data.Lookups;
-//using FriendOrganizer.UI.Data.Repositories;
-//using FriendOrganizer.UI.Views.Services;
+using FriendOrganizer.UI.ViewModels.Navigation;
+using FriendOrganizer.UI.ViewModels.FriendDetails;
 
 namespace FriendOrganizer.UI.Startup
 {
@@ -20,20 +20,19 @@ namespace FriendOrganizer.UI.Startup
 
             builder.RegisterType<MainWindow>().AsSelf();
             builder.RegisterType<MainViewModel>().AsSelf();
-            builder.RegisterType<NavigationViewModel>().AsSelf();
-            builder.RegisterType<FriendDetailsViewModel>().AsSelf();
 
-            builder.RegisterType<FriendDataService>().As<IFriendDataService>(); // change later
+            //builder.RegisterType<NavigationViewModel>().AsSelf();
+            //builder.RegisterType<FriendDetailsViewModel>().AsSelf();
 
-            //builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
-            //builder.RegisterType<FriendDetailsViewModel>().As<IFriendDetailsViewModel>();
+            builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
+            builder.RegisterType<FriendDetailsViewModel>().As<IFriendDetailsViewModel>();
 
             builder.RegisterType<MessageDialogService>().As<IMessageDialogService>();
 
-            //builder.RegisterType<FriendsOrganizerDbContext>().AsSelf();
+            builder.RegisterType<FriendOrganizerDbContext>().AsSelf();
 
-            //builder.RegisterType<LookupDataService>().AsImplementedInterfaces();
-            //builder.RegisterType<FriendRepository>().As<IFriendRepository>();
+            builder.RegisterType<LookupDataService>().AsImplementedInterfaces();
+            builder.RegisterType<FriendDataService>().As<IFriendDataService>(); 
 
             return builder.Build();
 

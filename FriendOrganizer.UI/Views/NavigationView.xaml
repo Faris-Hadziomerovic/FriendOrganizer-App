@@ -4,19 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FriendOrganizer.UI.Views" 
-             xmlns:viewmodels="clr-namespace:FriendOrganizer.UI.ViewModels" 
-             d:DataContext="{d:DesignInstance Type=viewmodels:NavigationViewModel}"
+             xmlns:navigation="clr-namespace:FriendOrganizer.UI.ViewModels.Navigation" 
+             d:DataContext="{d:DesignInstance Type=navigation:NavigationViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
-    
+
+
     <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto">
 
-        <ListView ItemsSource="{Binding Friends}"
-                  SelectedItem="{Binding SelectedFriend}"
-                  DisplayMemberPath="FirstName"/>
+            <ItemsControl ItemsSource="{Binding Friends}">
+                <ItemsControl.ItemTemplate>
 
+                    <DataTemplate>
+
+                        <Button Content="{Binding DisplayMember}"
+                                Command="{Binding OpenFriendDetailsCommand}"/>
+
+                    </DataTemplate>
+
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </ScrollViewer>
     </Grid>
-    
-    
+
+
 </UserControl>

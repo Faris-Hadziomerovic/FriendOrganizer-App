@@ -95,17 +95,25 @@
     </ApplicationDefinition>
     <Compile Include="Data\FriendDataService.cs" />
     <Compile Include="Data\IFriendDataService.cs" />
+    <Compile Include="Data\Lookups\IFriendLookupDataService.cs" />
+    <Compile Include="Data\Lookups\LookupDataService.cs" />
     <Compile Include="Events\AfterFriendSavedEvent.cs" />
     <Compile Include="Events\Observable.cs" />
     <Compile Include="Events\OpenFriendDetailsViewEvent.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
-    <Compile Include="ViewModels\FriendDetailsViewModel.cs" />
+    <Compile Include="ViewModels\FriendDetails\FriendDetailsViewModel.cs" />
+    <Compile Include="ViewModels\FriendDetails\IFriendDetailsViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\Navigation\INavigationViewModel.cs" />
+    <Compile Include="ViewModels\Navigation\NavigationItemViewModel.cs" />
     <Compile Include="Views\NavigationView.xaml.cs">
       <DependentUpon>NavigationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Services\IMessageDialogService.cs" />
     <Compile Include="Views\Services\MessageDialogService.cs" />
+    <Compile Include="Wrappers\FriendWrapper.cs" />
+    <Compile Include="Wrappers\ModelWrapper.cs" />
+    <Compile Include="Wrappers\NotifyDataErrorInfoBase.cs" />
     <Page Include="Views\FriendDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -118,7 +126,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModels\NavigationViewModel.cs" />
+    <Compile Include="ViewModels\Navigation\NavigationViewModel.cs" />
     <Compile Include="Views\FriendDetailsView.xaml.cs">
       <DependentUpon>FriendDetailsView.xaml</DependentUpon>
     </Compile>
@@ -168,10 +176,7 @@
       <Name>FriendOrganizer.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\Interfaces\" />
-    <Folder Include="Wrappers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

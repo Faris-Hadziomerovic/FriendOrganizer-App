@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FriendOrganizer.UI" 
         xmlns:views="clr-namespace:FriendOrganizer.UI.Views" 
         xmlns:viewmodels="clr-namespace:FriendOrganizer.UI.ViewModels" 
-        d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+        d:DataContext="{d:DesignInstance Type=viewmodels:FriendOrganizer.UI.ViewModels.Navigation.MainViewModel}"
         mc:Ignorable="d"
         Title="FriendOrganizer" Height="450" Width="800">
     

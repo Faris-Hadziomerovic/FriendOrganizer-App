@@ -1,19 +1,33 @@
-﻿using FriendOrganizer.DataAccess;
-using FriendOrganizer.Model;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Threading.Tasks;
+using FriendOrganizer.Model;
+using FriendOrganizer.DataAccess;
 
 namespace FriendOrganizer.UI.Data
 {
     public class FriendDataService : IFriendDataService
     {
-        public IEnumerable<Friend> GetFriends()
+        private FriendOrganizerDbContext _context;
+
+        public FriendDataService(FriendOrganizerDbContext context)
         {
-            using (var ctx = new FriendOrganizerDbContext())
-            {
-                return ctx.Friends.AsNoTracking().ToList();
-            }            
-        }        
+            _context = context;
+        }
+
+        public async Task<Friend> GetFriendByIdAsync(int Id)
+        {
+            return await _context.Friends.SingleAsync(f => f.Id == Id);
+
+        }
+
+        public bool HasChanges()
+        {
+            return _context.ChangeTracker.HasChanges();
+        }
+
+        public async Task SaveAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

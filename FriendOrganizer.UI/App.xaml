@@ -5,8 +5,8 @@
              Startup="Application_Startup"
              >
     <Application.Resources>
-        
-        <Style x:Key="ErrorHandlingTextBox" TargetType="TextBox">
+
+        <Style TargetType="TextBox">
 
             <Setter Property="Validation.ErrorTemplate">
                 <Setter.Value>
